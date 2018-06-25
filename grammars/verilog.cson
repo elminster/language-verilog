@@ -54,12 +54,8 @@
   'constants':
     'patterns': [
       {
-        'match': '\\b[0-9]+\'[bBoOdDhH][a-fA-F0-9_xXzZ]+\\b'
+         'match': '(\\b\\d+)?\'(s?[bB]\\s*[0-1xXzZ?][0-1_xXzZ?]*|s?[oO]\\s*[0-7xXzZ?][0-7_xXzZ?]*|s?[dD]\\s*[0-9xXzZ?][0-9_xXzZ?]*|s?[hH]\\s*[0-9a-fA-FxXzZ?][0-9a-fA-F_xXzZ?]*)((e|E)(\\+|-)?[0-9]+)?(?!\'|\\w)'
         'name': 'constant.numeric.sized_integer.verilog'
-      }
-      {
-        'match': '\\s\'[bBoOdDhH][a-fA-F0-9_xXzZ]+\\b'
-        'name': 'constant.numeric.unsized_integer.verilog'
       }
       {
         'captures':
@@ -81,34 +77,42 @@
         'name': 'constant.numeric.real.verilog'
       }
       {
-        'match': '#\\d+'
+        'match': '^\\s*#(\\d+|\\([a-zA-Z0-9_]*\\))'
         'name': 'constant.numeric.delay.verilog'
       }
       {
         'match': '\\b[01xXzZ]+\\b'
         'name': 'constant.numeric.logic.verilog'
       }
+      {
+        'match': "\\b([A-Z][A-Z0-9_]*)\\b"
+        'name': "constant.other.net.verilog"
+      }
     ]
   'instantiation_patterns':
     'patterns': [
       {
-        'include': '#keywords'
-      }
-      {
         'begin': '^\\s*([a-zA-Z][a-zA-Z0-9_]*)\\s+([a-zA-Z][a-zA-Z0-9_]*)(?<!begin|if)\\s*(?=\\(|$)'
         'beginCaptures':
+          '0':
+            'name': 'meta.block.instantiation.parameterless.start.verilog'
           '1':
-            'name': 'entity.name.tag.module.reference.verilog'
+            'name': 'entity.name.type.module.reference.verilog'
           '2':
             'name': 'entity.name.tag.module.identifier.verilog'
-        'end': ';'
+        'end': '(;)'
         'endCaptures':
           '0':
+            'name': 'meta.block.instantiation.parameterless.stop.verilog'
+          '1':
             'name': 'punctuation.terminator.expression.verilog'
         'name': 'meta.block.instantiation.parameterless.verilog'
         'patterns': [
           {
             'include': '#comments'
+          }
+          {
+            'include': '#keywords'
           }
           {
             'include': '#constants'
@@ -121,14 +125,24 @@
       {
         'begin': '^\\s*([a-zA-Z][a-zA-Z0-9_]*)\\s*(#)(?=\\s*\\()'
         'beginCaptures':
+          '0':
+            'name': 'meta.block.instantiation.with.parameters.start.verilog'
           '1':
-            'name': 'entity.name.tag.module.reference.verilog'
-        'end': ';'
+            'name': 'entity.name.type.module.reference.verilog'
+        'end': '(;)'
         'endCaptures':
           '0':
+            'name': 'meta.block.instantiation.with.parameters.stop.verilog'
+          '1':
             'name': 'punctuation.terminator.expression.verilog'
         'name': 'meta.block.instantiation.with.parameters.verilog'
         'patterns': [
+          {
+            'include': '#comments'
+          }
+          {
+            'include': '#keywords'
+          }
           {
             'include': '#parenthetical_list'
           }
@@ -142,7 +156,7 @@
   'keywords':
     'patterns': [
       {
-        'match': '\\b(alias|always|always_comb|always_ff|always_latch|and|assert|assign|assume|attribute|automatic|begin|before|bind|bins|binsof|bit|break|buf|bufif0|bufif1|byte|case(xz)?|cell|chandle|class|clocking|cmos|config|const|constraint|context|continue|cover|covergroup|coverpoint|cross|dist|do|deassign|default|defparam|design|disable|edge|else|end(attribute|case|class|clocking|config|function|generate|group|interface|module|package|primitive|program|property|sequence|specify|table|task)?|enum|event|expect|export|extends|extern|final|first_match|for|foreach|force|forever|fork|forkjoin|function|generate|genvar|incdir|include|instance|highz(01)|if(none|f)?|ignore_bins|import|initial|inout|input|inside|integer|int|interface|interact|join|join_any|join_none|large|liblist|library|local|logic|localparam|longing|matches|medium|module|modport|macromodule|nand|negedge|new|nmos|nor|noshowcancelled|not|notif(01)|null|or|output|package|packed|parameter|pmos|posedge|primitive|priority|program|property|protected|pull0|pull1|pulldown|pullup|pulsestyle_onevent|pulsestyle_ondetect|pure|rand|randc|randcase|randsequence|rcmos|real|realtime|ref|reg|release|repeat|return|rnmos|rpmos|rtran|rtranif(01)|scalared|sequence|semaphore|shortint|shortreal|showcancelled|signed|small|solve|specify|specparam|static|strength|string|strong0|strong1|struct|super|supply0|supply1|table|tagged|task|this|throughout|time|timeprecision|timeunit|type|typedef|ran|tranif(01)|tri(01)?|tri(and|or|reg)|union|unique|unsigned|use|uwire|var|vectored|virtual|void|wait|wait_order|wand|weak(01)|wildcard|while|with|within|wire|wor|xnor|xor)\\b'
+        'match': '\\b(alias|always|always_comb|always_ff|always_latch|and|assert|assign|assume|attribute|automatic|begin|before|bind|bins|binsof|bit|break|buf|bufif0|bufif1|byte|case(x|z)?|cell|chandle|class|clocking|cmos|config|const|constraint|context|continue|cover|covergroup|coverpoint|cross|dist|do|deassign|default|defparam|design|disable|edge|else|end(attribute|case|class|clocking|config|function|generate|group|interface|module|package|primitive|program|property|sequence|specify|table|task)?|enum|event|expect|export|extends|extern|final|first_match|for|foreach|force|forever|fork|forkjoin|function|generate|genvar|incdir|include|instance|highz(01)|if(none|f)?|ignore_bins|import|initial|inout|input|inside|integer|int|interface|interact|join|join_any|join_none|large|liblist|library|local|logic|localparam|longing|matches|medium|module|modport|macromodule|nand|negedge|new|nmos|nor|noshowcancelled|not|notif(01)|null|or|output|package|packed|parameter|pmos|posedge|primitive|priority|program|property|protected|pull0|pull1|pulldown|pullup|pulsestyle_onevent|pulsestyle_ondetect|pure|rand|randc|randcase|randsequence|rcmos|real|realtime|ref|reg|release|repeat|return|rnmos|rpmos|rtran|rtranif(01)|scalared|sequence|shortint|shortreal|showcancelled|signed|small|solve|specify|specparam|static|strength|string|strong0|strong1|struct|super|supply0|supply1|table|tagged|task|this|throughout|time|timeprecision|timeunit|type|typedef|ran|tranif(01)|tri(01)?|tri(and|or|reg)|union|unique|unsigned|use|uwire|var|vectored|virtual|void|wait|wait_order|wand|weak(01)|wildcard|while|with|within|wire|wor|xnor|xor)\\b'
         'name': 'keyword.other.verilog'
       }
       {
@@ -181,12 +195,10 @@
   'module_pattern':
     'patterns': [
       {
-        'begin': '\\b(module)\\s+([a-zA-Z][a-zA-Z0-9_]*)'
+        'begin': '\\b(module)\\b'
         'beginCaptures':
           '1':
             'name': 'storage.type.module.verilog'
-          '2':
-            'name': 'entity.name.type.module.verilog'
         'end': '\\bendmodule\\b'
         'endCaptures':
           '0':
@@ -198,6 +210,9 @@
           }
           {
             'include': '#keywords'
+          }
+          {
+            'include': '#module_header_pattern'
           }
           {
             'include': '#constants'
@@ -214,10 +229,38 @@
         ]
       }
     ]
+  'module_header_pattern':
+    'patterns': [
+      {
+        'begin': '\\b(?<=module)\\s+([a-zA-Z][a-zA-Z0-9_]*)(\\s+#)?'
+        'beginCaptures':
+          '1':
+            'name': 'entity.name.type.module.verilog'
+        'end': ';'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.terminator.expression.verilog'
+        'name': 'meta.block.module.header.verilog'
+        'patterns': [
+          {
+            'include': '#comments'
+          }
+          {
+            'include': '#keywords'
+          }
+          {
+            'include': '#constants'
+          }
+          {
+            'include': '#parenthetical_list'
+          }
+        ]
+      }
+    ]
   'operators':
     'patterns': [
       {
-        'match': '\\+|-|\\*|/|%|<|>|=|(!|=)?==?|!|&&?|\\|\\|?|\\^?~|~\\^?'
+        'match': '\\+|-|\\*|/|%|(<|>)=?|(!|=)?==?|!|&&?|\\|\\|?|\\^?~|~\\^?'
         'name': 'keyword.operator.verilog'
       }
     ]
