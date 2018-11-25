@@ -1,0 +1,81 @@
+name: 'Verilog'
+scopeName: 'source.verilog'
+type: 'tree-sitter'
+parser: 'tree-sitter-verilog'
+
+injectionRegex: 'verilog|Verilog'
+
+fileTypes: [
+  'v'
+  'sv'
+]
+
+folds: [
+  {
+    type: ['comment']
+  }
+]
+
+comments:
+  start: '// '
+
+scopes:
+  'translation_unit': 'source.verilog'
+  'comment': 'comment.block'
+
+  'module_keyword': 'storage.type.module.verilog'
+  '"endmodule"': 'storage.type.module.verilog'
+
+  '"assign"': 'keyword.control'
+
+  port_direction: 'storage.modifier'
+  net_type: 'storage.type'
+
+  '"parameter"': 'keyword.other.verilog'
+  '"localparam"': 'keyword.other.verilog'
+
+  integer_vector_type: 'storage.type'
+  number: 'constant.numeric'
+  constant_expression: 'constant.numeric'
+
+  module_identifier: 'entity.name.function'
+# 'entity.name.type.module.verilog'
+
+
+
+  'preproc_arg': 'meta.preprocessor.macro'
+
+  '"="': 'keyword.operator'
+
+  unary_operator: 'keyword.operator'
+  assignment_operator: 'keyword.operator'
+
+  '"+"': 'keyword.operator'
+  '"-"': 'keyword.operator'
+  '"*"': 'keyword.operator'
+  '"/"': 'keyword.operator'
+  '"%"': 'keyword.operator'
+  '"=="': 'keyword.operator'
+  '"!="': 'keyword.operator'
+  '"==="': 'keyword.operator'
+  '"!=="': 'keyword.operator'
+  '"==?"': 'keyword.operator'
+  '"!=?"': 'keyword.operator'
+  '"&&"': 'keyword.operator'
+  '"||"': 'keyword.operator'
+  '"**"': 'keyword.operator'
+  '"<"': 'keyword.operator'
+  '"<="': 'keyword.operator'
+  '">"': 'keyword.operator'
+  '">="': 'keyword.operator'
+  '"&"': 'keyword.operator'
+  '"|"': 'keyword.operator'
+  '"^"': 'keyword.operator'
+  '"^~"': 'keyword.operator'
+  '"~^"': 'keyword.operator'
+  '">>"': 'keyword.operator'
+  '"<<"': 'keyword.operator'
+  '">>>"': 'keyword.operator'
+  '"<<<"': 'keyword.operator'
+  '"->"': 'keyword.operator'
+  '"<->"': 'keyword.operator'

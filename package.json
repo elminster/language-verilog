@@ -2,6 +2,10 @@
   "name": "language-verilog",
   "version": "0.4.0",
   "description": "Verilog language support in Atom",
+  "keywords": [
+    "tree-sitter"
+  ],
+  "main": "lib/main",
   "repository": {
     "type": "git",
     "url": "https://github.com/Razer6/language-verilog"
@@ -13,5 +17,10 @@
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "tree-sitter-verilog": "^0.4.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.13.10"
+  }
 }
