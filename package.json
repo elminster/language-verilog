@@ -15,12 +15,9 @@
   },
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">1.0.0"
   },
   "dependencies": {
-    "tree-sitter-verilog": "^0.4.0"
-  },
-  "devDependencies": {
-    "tree-sitter-cli": "^0.13.10"
+    "tree-sitter-verilog": "^0.5.4"
   }
 }
