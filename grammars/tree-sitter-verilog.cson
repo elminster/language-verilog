@@ -20,6 +20,18 @@ comments:
   start: '// '
 
 scopes:
+  include_compiler_directive: 'keyword.control.directive'
+  text_macro_definition: 'keyword.control.directive'
+  text_macro_usage: 'keyword.control.directive'
+  id_directive: 'keyword.control.directive'
+  zero_directive: 'keyword.control.directive'
+
+  text_macro_identifier: 'entity.name.type'
+
+  include_compiler_directive_relative: 'string'
+  include_compiler_directive_standard: 'string'
+  macro_text: 'string'
+
   'translation_unit': 'source.verilog'
   'comment': 'comment.block'
 
