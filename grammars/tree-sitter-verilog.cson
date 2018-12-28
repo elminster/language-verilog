@@ -8,6 +8,8 @@ injectionRegex: 'verilog|Verilog'
 fileTypes: [
   'v'
   'sv'
+  'vh',
+  'svh'
 ]
 
 folds: [
