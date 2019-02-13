@@ -27,12 +27,15 @@ scopes:
   text_macro_usage: 'keyword.control.directive'
   id_directive: 'keyword.control.directive'
   zero_directive: 'keyword.control.directive'
+  timescale_compiler_directive: 'keyword.control.directive'
+  default_nettype_compiler_directive: 'keyword.control.directive'
 
   text_macro_identifier: 'entity.name.type'
 
   include_compiler_directive_relative: 'string'
   include_compiler_directive_standard: 'string'
   macro_text: 'string'
+  time_literal: 'string'
 
   'translation_unit': 'source.verilog'
   'comment': 'comment.block'
@@ -46,9 +49,11 @@ scopes:
   name_of_instance: 'entity.name.type'
 
   always_keyword: 'keyword.control'
+  '"always"': 'keyword.control'
   '"assign"': 'keyword.control'
   '"begin"': 'keyword.control'
   '"end"': 'keyword.control'
+  '"for"': 'keyword.control'
   '"if"': 'keyword.control'
   '"else"': 'keyword.control'
   '"import"': 'keyword.control'
@@ -63,6 +68,10 @@ scopes:
   '"extends"': 'keyword.control'
   '"void"': 'keyword.control'
   '"forever"': 'keyword.control'
+  '"generate"': 'keyword.control'
+  '"endgenerate"': 'keyword.control'
+  case_keyword: 'keyword.control'
+  '"endcase"': 'keyword.control'
 
   edge_identifier: 'variable'
   '"or"': 'keyword'
@@ -70,6 +79,7 @@ scopes:
 
   '"input"': 'variable'
   '"output"': 'variable'
+  '"inout"': 'variable'
 
 
   net_type: 'support.storage.type'
@@ -77,12 +87,20 @@ scopes:
   integer_atom_type: 'support.storage.type'
   '"string"': 'support.storage.type'
   non_integer_type: 'support.storage.type'
+  '"genvar"': 'support.storage.type'
 
   '"parameter"': 'keyword.other.verilog'
   '"localparam"': 'keyword.other.verilog'
+  '"defparam"': 'keyword.other.verilog'
 
-  number: 'numeric'
+  number: 'constant'
+  integral_number: 'constant'
   constant_expression: 'constant'
+  hex_number: 'constant'
+  decimal_number: 'constant'
+  '"default"': 'constant'
+
+  string_literal: 'string'
 
   module_identifier: 'entity.name.function'
   function_identifier: 'entity.name.function'
@@ -92,11 +110,18 @@ scopes:
 
 
   'preproc_arg': 'meta.preprocessor.macro'
-
-  '"="': 'keyword'
+  simple_text_macro_usage: 'meta.preprocessor.macro'
 
   unary_operator: 'keyword'
+  '"@"': 'keyword.opeartor'
+
+  # unary_operator: 'keyword'
   assignment_operator: 'keyword'
+  '"="': 'keyword'
+  '"."': 'keyword'
+
+  '"?"': 'keyword'
+  '":"': 'keyword'
 
   '"+"': 'keyword'
   '"-"': 'keyword'
