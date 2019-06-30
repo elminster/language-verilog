@@ -21,6 +21,43 @@ folds: [
     start: {index: 0}
     end: {index: -1}
   }
+  {
+    type: ['case_item']
+    start: {index: -1}
+    end: {index: -1}
+  }
+  {
+    type: ['hierarchical_instance']
+    start: {index: 1}
+    end: {index: -1}
+  }
+  {
+    type: ['function_body_declaration']
+    start: {index: 0}
+    end: {index: -1}
+  }
+  {
+    type: ['list_of_parameter_assignments']
+    start: {index: 1}
+    end: {index: -1}
+  }
+  {
+    type: ['always_construct', 'case_statement', 'module_declaration']
+    start: {index: 2}
+    end: {index: -1}
+  }
+  {
+    start: {index: 0, type: '{'}
+    end: {index: -1, type: '}'}
+  }
+  {
+    start: {index: 0, type: '['}
+    end: {index: -1, type: ']'}
+  }
+  {
+    start: {index: 0, type: '('}
+    end: {index: -1, type: ')'}
+  }
 ]
 
 comments:
