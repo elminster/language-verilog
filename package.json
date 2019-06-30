@@ -18,6 +18,6 @@
     "atom": ">1.0.0"
   },
   "dependencies": {
-    "tree-sitter-verilog": "^0.15.6"
+    "tree-sitter-verilog": "^0.15.7"
   }
 }
